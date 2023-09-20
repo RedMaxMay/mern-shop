@@ -3,6 +3,7 @@ import Product from "../components/Product";
 import { useGetProductsQuery } from "../slices/productsApiSlice";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
+import { useSelector } from "react-redux";
 
 const HomeScreen = () => {
   const { data: products, isLoading, error } = useGetProductsQuery();
