@@ -9,7 +9,7 @@ import {
   Form,
 } from "react-bootstrap";
 import Rating from "../components/Rating";
-import { useGetProductDetailQuery } from "../slices/productsApiSlice";
+import { useGetProductDetailsQuery } from "../slices/productsApiSlice";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
 import { useState } from "react";
@@ -27,7 +27,7 @@ const ProductScreen = () => {
     data: product,
     isLoading,
     error,
-  } = useGetProductDetailQuery(productId);
+  } = useGetProductDetailsQuery(productId);
 
   const addToCartHandler = () => {
     dispatch(addToCart({ ...product, qty }));
