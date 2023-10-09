@@ -15,12 +15,7 @@ import { toast } from "react-toastify";
 const ProductListScreen = () => {
   const { pageNumber } = useParams();
 
-  const {
-    data: products,
-    isLoading,
-    error,
-    refetch,
-  } = useGetProductsQuery({
+  const { data, isLoading, error, refetch } = useGetProductsQuery({
     pageNumber,
   });
 
@@ -28,7 +23,7 @@ const ProductListScreen = () => {
     useDeleteProductMutation();
 
   const deleteHandler = async (id) => {
-    if (window.confirm("Are you sure?")) {
+    if (window.confirm("Are you sure")) {
       try {
         await deleteProduct(id);
         refetch();
@@ -85,7 +80,7 @@ const ProductListScreen = () => {
               </tr>
             </thead>
             <tbody>
-              {products.map((product) => (
+              {data.products.map((product) => (
                 <tr key={product._id}>
                   <td>{product._id}</td>
                   <td>{product.name}</td>
@@ -110,7 +105,7 @@ const ProductListScreen = () => {
               ))}
             </tbody>
           </Table>
-          <Paginate pages={products.pages} page={products.page} isAdmin={true} />
+          <Paginate pages={data.pages} page={data.page} isAdmin={true} />
         </>
       )}
     </>
